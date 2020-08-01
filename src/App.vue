@@ -3,7 +3,10 @@
     <h1>Employees</h1>
 
     <employee-form @add:employee="addEmployee"/>
-    <employee-table v-bind:employees="employees" />
+    <employee-table v-bind:employees="employees"
+    @delete:employee="deleteEmployee"
+    @edit:employee="editEmployee"
+     />
   </div>
 </template>
 
@@ -45,7 +48,13 @@
         const newEmployee = {...employee , id};
         
         this.employees = [... this.employees, newEmployee];
+      },
+      deleteEmployee(id){
+        this.employees = this.employees.filter(
+          employees => employees.id !== id
+        )
       }
+      
     }
   }
 </script>
